@@ -3,7 +3,7 @@
         private $host = 'localhost';
         private $user = 'root';
         private $password = '';
-        private $database = 'EFKenji';
+        private $database = 'efkenji';
 
         public function GetConnection(){
             $hostDB = "mysql:host=".$this->host.";dbname=".$this->database.";";
