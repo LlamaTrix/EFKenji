@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/../models/user.model.php');
-require(__DIR__.'/../config/security.php');
-$decoded = validateJWT();
+// require(__DIR__.'/../config/security.php');
+// $decoded = validateJWT();
 
 header("Content-Type: application/json");
 

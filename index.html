@@ -1,443 +1,697 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="You'll learn English for free." />
+    <meta name="description" content="Aprende inglés completamente gratis. Cursos interactivos con opción premium sin anuncios." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EFK - Free English's Courses</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <title>EnglishForFree - Aprende Inglés Gratis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+      :root {
+        --primary-red: #e63946;
+        --secondary-blue: #1d3557;
+        --light-blue: #a8dadc;
+        --cream: #f1faee;
+        --dark: #1a1a2e;
+      }
+      
       body {
-        font-family: "Cabin", sans-serif;
-        background-color: #e5eff5;
+        font-family: 'Open Sans', sans-serif;
+        background-color: var(--cream);
+        color: var(--dark);
+        overflow-x: hidden;
       }
-      header {
-        height: 80vh;
-        background: linear-gradient(rgba(255, 0, 0, 0.6), rgba(255, 0, 0, 0.6)),
-          url("https://images.pexels.com/photos/414380/pexels-photo-414380.jpeg")
-            no-repeat center center;
+      
+      h1, h2, h3, h4, h5, h6, .navbar-brand {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+      }
+      
+      /* Navbar */
+      .navbar {
+        background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-red) 100%);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        padding: 12px 0;
+        transition: all 0.3s ease;
+      }
+      
+      .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: 900;
+      }
+      
+      .nav-link {
+        color: white !important;
+        font-weight: 600;
+        margin: 0 8px;
+        transition: all 0.3s;
+        position: relative;
+      }
+      
+      .nav-link:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        transition: width 0.3s;
+      }
+      
+      .nav-link:hover:after {
+        width: 100%;
+      }
+      
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(29, 53, 87, 0.85), rgba(230, 57, 70, 0.85)), url('https://images.pexels.com/photos/4145194/pexels-photo-4145194.jpeg') no-repeat center center;
         background-size: cover;
-        color: #fff;
+        color: white;
+        padding: 140px 0 80px;
+        margin-top: 65px;
+        text-align: center;
       }
-      .hero-content {
+      
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      .hero p {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .btn-hero {
+        background-color: white;
+        color: var(--primary-red);
+        border: none;
+        padding: 12px 35px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        border-radius: 50px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      
+      .btn-hero:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        background-color: var(--light-blue);
+      }
+      
+      /* Features Section */
+      .features {
+        padding: 80px 0;
+        background-color: white;
+      }
+      
+      .section-title {
+        color: var(--secondary-blue);
+        position: relative;
+        margin-bottom: 50px;
+        text-align: center;
+      }
+      
+      .section-title:after {
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 4px;
+        background: var(--primary-red);
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+      
+      .feature-card {
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        background: white;
+        border-top: 5px solid var(--primary-red);
+      }
+      
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+      
+      .feature-icon {
+        font-size: 3.5rem;
+        color: var(--primary-red);
+        margin-bottom: 20px;
+      }
+      
+      /* Courses Section */
+      .courses {
+        padding: 80px 0;
+        background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+      }
+      
+      .course-card {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        background: white;
+        height: 100%;
+      }
+      
+      .course-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      }
+      
+      .course-img {
+        height: 180px;
+        object-fit: cover;
+      }
+      
+      .course-content {
+        padding: 20px;
+      }
+      
+      .course-level {
+        display: inline-block;
+        background: var(--secondary-blue);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+      }
+      
+      .btn-course {
+        background: var(--primary-red);
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+        width: 100%;
+      }
+      
+      .btn-course:hover {
+        background: var(--secondary-blue);
+        transform: translateY(-2px);
+      }
+      
+      /* Subscription Section */
+      .subscription {
+        padding: 80px 0;
+        background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-red) 100%);
+        color: white;
         text-align: center;
       }
-      .small-login {
-        font-size: 0.75rem;
-        line-height: 1.2;
-        text-align: center;
+      
+      .subscription-card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px 30px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        color: var(--dark);
+        max-width: 500px;
+        margin: 0 auto;
       }
-      .small-login a {
-        color: #fff;
-        text-decoration: underline;
+      
+      .price {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: var(--primary-red);
+        margin: 20px 0;
       }
-      .icon-feature {
-        font-size: 3rem;
-        color: #dc3545;
-        margin-bottom: 15px;
+      
+      .benefits-list {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        margin-bottom: 30px;
       }
-.carousel-control-prev-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f44336' viewBox='0 0 24 24'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E%3C/svg%3E");
-}
-
-.carousel-control-next-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f44336' viewBox='0 0 24 24'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z'/%3E%3C/svg%3E");
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  width: 3.5rem;   /* más grandes */
-  height: 3.5rem;
-  background-size: 100% 100%;
-}
-
-
-
+      
+      .benefits-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .benefits-list li:last-child {
+        border-bottom: none;
+      }
+      
+      .benefits-list i {
+        color: var(--primary-red);
+        margin-right: 10px;
+      }
+      
+      .btn-premium {
+        background: var(--secondary-blue);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 700;
+        border: none;
+        transition: all 0.3s;
+        box-shadow: 0 5px 15px rgba(29, 53, 87, 0.3);
+      }
+      
+      .btn-premium:hover {
+        background: var(--primary-red);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+      }
+      
+      /* Testimonials */
+      .testimonials {
+        padding: 80px 0;
+        background-color: white;
+      }
+      
+      .testimonial-card {
+        background: var(--cream);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        position: relative;
+        margin-top: 30px;
+      }
+      
+      .testimonial-card:after {
+        content: '\201D';
+        position: absolute;
+        top: -20px;
+        left: 20px;
+        font-size: 5rem;
+        color: var(--light-blue);
+        font-family: Arial, sans-serif;
+      }
+      
+      .testimonial-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+      }
+      
+      /* Footer */
       footer {
-        background-color: #111;
-        color: #fff;
-        padding: 2rem 0;
+        background: var(--dark);
+        color: white;
+        padding: 60px 0 30px;
       }
-      footer a {
-        color: #f44336;
+      
+      .footer-links h5 {
+        color: var(--primary-red);
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+      
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+      
+      .footer-links a {
+        color: #ccc;
         text-decoration: none;
+        transition: all 0.3s;
       }
-      footer a:hover {
-        text-decoration: underline;
+      
+      .footer-links a:hover {
+        color: var(--primary-red);
+        padding-left: 5px;
+      }
+      
+      .social-icons a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        color: white;
+        margin-right: 10px;
+        transition: all 0.3s;
+      }
+      
+      .social-icons a:hover {
+        background: var(--primary-red);
+        transform: translateY(-5px);
+      }
+      
+      /* Animations */
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        
+        .hero p {
+          font-size: 1.1rem;
+        }
+        
+        .feature-card, .course-card {
+          margin-bottom: 30px;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#"
-          ><i class="fa-solid fa-graduation-cap"></i> EFK</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
+        <a class="navbar-brand" href="#">
+          <i class="fa-solid fa-graduation-cap me-2"></i>EnglishForFree
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="#"
-                ><i class="fa-solid fa-house"></i> Inicio</a
-              >
+              <a class="nav-link active" href="#"><i class="fa-solid fa-house me-1"></i> Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="fa-solid fa-book-open"></i> Cursos</a
-              >
+              <a class="nav-link" href="#courses"><i class="fa-solid fa-book me-1"></i> Cursos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="fa-solid fa-credit-card"></i> Suscripción</a
-              >
+              <a class="nav-link" href="#premium"><i class="fa-solid fa-crown me-1"></i> Premium</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contacto"
-                ><i class="fa-solid fa-envelope"></i> Contacto</a
-              >
+              <a class="nav-link" href="#testimonials"><i class="fa-solid fa-star me-1"></i> Reseñas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact"><i class="fa-solid fa-envelope me-1"></i> Contacto</a>
             </li>
           </ul>
-
-          <!-- Login separado -->
-          <div class="d-flex flex-row align-items-center ms-3">
-            <a href="#" class="btn btn-light btn-sm mx-3"
-              ><i class="fa-solid fa-user"></i> Iniciar Sesión</a
-            >
-            <div class="small-login mt-1 text-white">
-              ¿No tienes cuenta?<br />
-              <a href="#"
-                ><i class="fa-solid fa-user-plus"></i> Crear usuario</a
-              >
-            </div>
+          <div class="d-flex">
+            <a href="#login" class="btn btn-outline-light me-2"><i class="fa-solid fa-right-to-bracket me-1"></i> Ingresar</a>
+            <a href="#register" class="btn btn-light"><i class="fa-solid fa-user-plus me-1"></i> Registrarse</a>
           </div>
         </div>
       </div>
     </nav>
 
-    <!-- HEADER -->
-    <header>
-      <div class="hero-content container">
-        <h1 class="display-4 fw-bold">
-          <i class="fa-solid fa-language"></i> Aprende Inglés Gratis con EFK
-        </h1>
-        <p class="lead">
-          Cursos modernos, interactivos y dinámicos para que domines el inglés.
-        </p>
-        <a href="#" class="btn btn-light btn-lg mt-3"
-          ><i class="fa-solid fa-play"></i> Comenzar Ahora</a
-        >
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div data-aos="fade-up" data-aos-duration="1000">
+          <h1>¡Aprende Inglés Completamente <span class="text-warning">GRATIS</span>!</h1>
+          <p>Miles de estudiantes ya están mejorando su inglés con nuestros cursos interactivos. Únete hoy y comienza tu journey.</p>
+          <a href="#register" class="btn btn-hero pulse">
+            <i class="fa-solid fa-rocket me-2"></i>¡Comenzar Ahora!
+          </a>
+        </div>
       </div>
-    </header>
+    </section>
 
-    <!-- MAIN -->
-    <main class="container my-5">
-      <!-- Metodología -->
-      <section class="text-center my-5">
-        <h2 class="fw-bold text-danger">Nuestro Método</h2>
-        <div class="row mt-4">
-          <div class="col-md-4">
-            <i class="fa-solid fa-chalkboard-teacher icon-feature"></i>
-            <h5>Clases Interactivas</h5>
-            <p>Aprende con dinámicas prácticas y material audiovisual.</p>
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">¿Por Qué Elegirnos?</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-card">
+              <i class="fa-solid fa-earth-americas feature-icon"></i>
+              <h4>Aprende de Forma Natural</h4>
+              <p>Método innovador que simula la inmersión lingüística con contenido real y situaciones cotidianas.</p>
+            </div>
           </div>
-          <div class="col-md-4">
-            <i class="fa-solid fa-laptop icon-feature"></i>
-            <h5>100% Online</h5>
-            <p>Accede desde cualquier dispositivo en cualquier momento.</p>
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-card">
+              <i class="fa-solid fa-gamepad feature-icon"></i>
+              <h4>Lecciones Interactivas</h4>
+              <p>Juegos, quizzes y ejercicios prácticos que hacen que aprender sea divertido y efectivo.</p>
+            </div>
           </div>
-          <div class="col-md-4">
-            <i class="fa-solid fa-comments icon-feature"></i>
-            <h5>Conversaciones Reales</h5>
-            <p>Practica con situaciones cotidianas y ejemplos reales.</p>
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-card">
+              <i class="fa-solid fa-clock feature-icon"></i>
+              <h4>Flexibilidad Total</h4>
+              <p>Aprende a tu ritmo, en cualquier momento y desde cualquier dispositivo. Sin horarios fijos.</p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Carrusel de Cursos -->
-      <section class="my-5">
-        <h2 class="text-center fw-bold text-danger mb-4">Nuestros Cursos</h2>
-        <div id="carouselCursos" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="d-flex justify-content-center gap-3">
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://images.pexels.com/photos/4145193/pexels-photo-4145193.jpeg"
-                    class="card-img-top"
-                    alt="Curso 1"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <i class="fa-solid fa-seedling"></i> A1
-                    </h5>
-                    <p class="card-text">
-                      Empieza desde cero con vocabulario y gramática esencial.
-                    </p>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg"
-                    class="card-img-top"
-                    alt="Curso 2"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <i class="fa-solid fa-level-up-alt"></i> Inglés Básico
-                    </h5>
-                    <p class="card-text">
-                      Mejora tu fluidez y comprensión en situaciones cotidianas.
-                    </p>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg"
-                    class="card-img-top"
-                    alt="Curso 3"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <i class="fa-solid fa-level-up-alt"></i> Inglés Intermedio
-                    </h5>
-                    <p class="card-text">
-                      Mejora tu fluidez y comprensión en situaciones cotidianas.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <div class="d-flex justify-content-center gap-3">
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://images.pexels.com/photos/4144222/pexels-photo-4144222.jpeg"
-                    class="card-img-top"
-                    alt="Curso 3"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <i class="fa-solid fa-graduation-cap"></i> Inglés Avanzado
-                    </h5>
-                    <p class="card-text">
-                      Domina conversaciones profesionales y académicas.
-                    </p>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://images.pexels.com/photos/4145153/pexels-photo-4145153.jpeg"
-                    class="card-img-top"
-                    alt="Curso 4"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <i class="fa-solid fa-briefcase"></i> Inglés para Negocios
-                    </h5>
-                    <p class="card-text">
-                      Enfocado en presentaciones, reuniones y correos formales.
-                    </p>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://images.pexels.com/photos/4145153/pexels-photo-4145153.jpeg"
-                    class="card-img-top"
-                    alt="Curso 5"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <i class="fa-solid fa-briefcase"></i> Inglés para Negocios
-                    </h5>
-                    <p class="card-text">
-                      Enfocado en presentaciones, reuniones y correos formales.
-                    </p>
-                  </div>
-                </div>
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Nuestros Cursos Populares</h2>
+        <p class="text-center mb-5" data-aos="fade-up">Selecciona cualquier curso para comenzar tu aprendizaje. ¡Totalmente gratis!</p>
+        
+        <div class="row">
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="course-card">
+              <img src="https://images.pexels.com/photos/4145194/pexels-photo-4145194.jpeg" class="course-img w-100" alt="Inglés Básico">
+              <div class="course-content">
+                <span class="course-level">Principiante</span>
+                <h4>Inglés para Principiantes</h4>
+                <p>Comienza desde cero con vocabulario esencial y gramática básica.</p>
+                <a href="#login" class="btn btn-course">Comenzar Curso</a>
               </div>
             </div>
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselCursos"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselCursos"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon"></span>
-          </button>
-        </div>
-      </section>
-
-      <!-- Reseñas -->
-      <section class="my-5">
-        <h2 class="text-center fw-bold text-danger mb-4">
-          Reseñas de Estudiantes
-        </h2>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card border-danger">
-              <div class="card-body">
-                <p class="card-text">
-                  <i class="fa-solid fa-quote-left"></i> "Me encantaron los
-                  cursos, aprendí mucho más rápido de lo esperado."
-                </p>
-                <h6 class="fw-bold">- Ana P.</h6>
+          
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="course-card">
+              <img src="https://images.pexels.com/photos/4144222/pexels-photo-4144222.jpeg" class="course-img w-100" alt="Inglés Intermedio">
+              <div class="course-content">
+                <span class="course-level">Intermedio</span>
+                <h4>Inglés Conversacional</h4>
+                <p>Mejora tu fluidez y aprende a conversar en situaciones reales.</p>
+                <a href="#login" class="btn btn-course">Comenzar Curso</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card border-danger">
-              <div class="card-body">
-                <p class="card-text">
-                  <i class="fa-solid fa-quote-left"></i> "Los materiales
-                  interactivos hacen que el inglés sea divertido."
-                </p>
-                <h6 class="fw-bold">- Luis G.</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card border-danger">
-              <div class="card-body">
-                <p class="card-text">
-                  <i class="fa-solid fa-quote-left"></i> "Gracias a EFK ahora
-                  puedo trabajar en el extranjero."
-                </p>
-                <h6 class="fw-bold">- Sofía M.</h6>
+          
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="course-card">
+              <img src="https://images.pexels.com/photos/4145153/pexels-photo-4145153.jpeg" class="course-img w-100" alt="Inglés Negocios">
+              <div class="course-content">
+                <span class="course-level">Avanzado</span>
+                <h4>Inglés para Negocios</h4>
+                <p>Domina reuniones, presentaciones y comunicación profesional.</p>
+                <a href="#login" class="btn btn-course">Comenzar Curso</a>
               </div>
             </div>
           </div>
         </div>
-      </section>
+        
+        <div class="text-center mt-4" data-aos="fade-up">
+          <a href="#courses" class="btn btn-outline-primary">Ver Todos los Cursos</a>
+        </div>
+      </div>
+    </section>
 
-      <!-- Contacto -->
-      <section id="contacto" class="my-5">
-        <h2 class="text-center fw-bold text-danger mb-4">Contáctanos</h2>
-        <form class="col-md-6 mx-auto">
-          <div class="mb-3">
-            <label class="form-label"
-              ><i class="fa-solid fa-user"></i> Nombre</label
-            >
-            <input type="text" class="form-control" placeholder="Tu nombre" />
-          </div>
-          <div class="mb-3">
-            <label class="form-label"
-              ><i class="fa-solid fa-envelope"></i> Correo</label
-            >
-            <input type="email" class="form-control" placeholder="Tu correo" />
-          </div>
-          <div class="mb-3">
-            <label class="form-label"
-              ><i class="fa-solid fa-message"></i> Mensaje</label
-            >
-            <textarea
-              class="form-control"
-              rows="4"
-              placeholder="Tu mensaje..."
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-danger w-100">
-            <i class="fa-solid fa-paper-plane"></i> Enviar
-          </button>
-        </form>
-      </section>
-    </main>
+    <!-- Subscription Section -->
+    <section id="premium" class="subscription">
+      <div class="container">
+        <h2 class="mb-4" data-aos="fade-up">¿Cansado de los Anuncios?</h2>
+        <p class="mb-5" data-aos="fade-up">Actualiza a Premium por solo $3/mes y disfruta de una experiencia de aprendizaje sin interrupciones</p>
+        
+        <div class="subscription-card" data-aos="zoom-in">
+          <h3><i class="fa-solid fa-crown me-2"></i>Plan Premium</h3>
+          <div class="price">$3 <small>/mes</small></div>
+          <ul class="benefits-list">
+            <li><i class="fa-solid fa-check"></i> Acceso sin anuncios a todos los cursos</li>
+            <li><i class="fa-solid fa-check"></i> Contenido exclusivo premium</li>
+            <li><i class="fa-solid fa-check"></i> Descarga de lecciones para modo offline</li>
+            <li><i class="fa-solid fa-check"></i> Certificados de finalización</li>
+            <li><i class="fa-solid fa-check"></i> Soporte prioritario 24/7</li>
+          </ul>
+          <button class="btn btn-premium">Obtener Premium</button>
+        </div>
+      </div>
+    </section>
 
-    <!-- FOOTER -->
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Lo Que Dicen Nuestros Estudiantes</h2>
+        
+        <div class="row">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-card">
+              <p>"Empecé desde cero y en 6 meses ya puedo mantener conversaciones en inglés. Los cursos son divertidos y fáciles de seguir!"</p>
+              <div class="d-flex align-items-center mt-3">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User" class="testimonial-avatar">
+                <div>
+                  <h5 class="mb-0">María López</h5>
+                  <small class="text-muted">Estudiante</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-card">
+              <p>"La opción premium vale cada centavo. Sin anuncios puedo concentrarme mejor y he avanzado el doble de rápido."</p>
+              <div class="d-flex align-items-center mt-3">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="testimonial-avatar">
+                <div>
+                  <h5 class="mb-0">Carlos Mendoza</h5>
+                  <small class="text-muted">Estudiante Premium</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-card">
+              <p>"Como profesora, recomiendo esta plataforma a mis alumnos. La metodología es moderna y los resultados son evidentes."</p>
+              <div class="d-flex align-items-center mt-3">
+                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="User" class="testimonial-avatar">
+                <div>
+                  <h5 class="mb-0">Ana Rodríguez</h5>
+                  <small class="text-muted">Profesora de Inglés</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-5" style="background-color: var(--light-blue);">
+      <div class="container text-center py-5">
+        <h2 class="mb-4" data-aos="fade-up">¿Qué Esperas para Empezar?</h2>
+        <p class="lead mb-4" data-aos="fade-up">Únete a miles de estudiantes que ya están mejorando su inglés con nosotros</p>
+        <a href="#register" class="btn btn-hero pulse" data-aos="fade-up">
+          <i class="fa-solid fa-graduation-cap me-2"></i>Crear Cuenta Gratis
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="row">
-          <!-- Links externos -->
-          <div class="col-md-8 text-center text-md-start mb-3 mb-md-0">
-            <p>&copy; 2025 EFK - Free English's Courses</p>
-            <div
-              class="d-flex justify-content-center justify-content-md-start gap-3"
-            >
-              <a href="https://github.com"
-                ><i class="fa-brands fa-github"></i> GitHub</a
-              >
-              <a href="https://www.linkedin.com"
-                ><i class="fa-brands fa-linkedin"></i> LinkedIn</a
-              >
-              <a href="https://www.youtube.com"
-                ><i class="fa-brands fa-youtube"></i> YouTube</a
-              >
-              <a href="https://www.facebook.com"
-                ><i class="fa-brands fa-facebook"></i> Facebook</a
-              >
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <h3 class="mb-4"><i class="fa-solid fa-graduation-cap me-2"></i>EnglishForFree</h3>
+            <p>La plataforma más efectiva para aprender inglés de forma gratuita, con opción premium para una experiencia sin anuncios.</p>
+            <div class="social-icons mt-4">
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube"></i></a>
             </div>
           </div>
-
-          <!-- Login separado -->
-          <div class="col-md-4 text-center text-md-end">
-            <a href="#" class="btn btn-light btn-sm mb-2"
-              ><i class="fa-solid fa-user"></i> Iniciar Sesión</a
-            >
-            <div class="small-login text-white">
-              ¿No tienes cuenta?<br />
-              <a href="#"
-                ><i class="fa-solid fa-user-plus"></i> Crear usuario</a
-              >
+          
+          <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+            <div class="footer-links">
+              <h5>Enlaces Rápidos</h5>
+              <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#courses">Cursos</a></li>
+                <li><a href="#premium">Premium</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+              </ul>
             </div>
           </div>
+          
+          <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+            <div class="footer-links">
+              <h5>Cursos Populares</h5>
+              <ul>
+                <li><a href="#">Inglés para Principiantes</a></li>
+                <li><a href="#">Inglés Conversacional</a></li>
+                <li><a href="#">Inglés para Negocios</a></li>
+                <li><a href="#">Preparación para Exámenes</a></li>
+                <li><a href="#">Inglés para Viajes</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-4">
+            <div class="footer-links">
+              <h5>Contacto</h5>
+              <ul>
+                <li><i class="fa-solid fa-envelope me-2"></i> info@englishforfree.com</li>
+                <li><i class="fa-solid fa-phone me-2"></i> +591 77023439</li>
+                <li><i class="fa-solid fa-location-dot me-2"></i> 3285 Diego de Matos st, Santa Cruz de la Sierra, Bolivia</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <hr class="my-4 bg-secondary">
+        
+        <div class="text-center">
+          <p class="mb-0">&copy; 2025 EnglishForFree. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+          duration: 1000,
+          once: true,
+          offset: 100
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 50) {
+            navbar.style.padding = '8px 0';
+            navbar.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+          } else {
+            navbar.style.padding = '12px 0';
+            navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+          }
+        });
+        
+        // Redirect all course links to login
+        const courseLinks = document.querySelectorAll('.btn-course, .btn-hero');
+        courseLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            // In a real scenario, this would redirect to login page
+            window.location.href = '#register';
+          });
+        });
+      });
+    </script>
   </body>
 </html>
